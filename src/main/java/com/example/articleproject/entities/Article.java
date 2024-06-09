@@ -27,6 +27,10 @@ public class Article {
     @Column(name = "price")
     private double price;
 
+    private String id_stock;
+
+
+
     public void setId(Long id) {
         this.id = id;
     }

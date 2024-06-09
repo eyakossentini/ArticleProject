@@ -1,5 +1,6 @@
 package com.example.articleproject.controllers;
 
+import com.example.articleproject.dto.ArticleDTO;
 import com.example.articleproject.entities.Article;
 import com.example.articleproject.services.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,30 @@ public class ArticleController {
     @Autowired
     private IArticleService ias;
     @PostMapping("/addArticle")
-    public Article ajouterArticle(@RequestBody Article a){
+    public ArticleDTO ajouterArticle(@RequestBody ArticleDTO a){
         return ias.addArticle(a);
     }
 
 
     @GetMapping("/getArticles")
-    public List<Article> getAllContrat(){return ias.getAllArticles();}
+    public List<ArticleDTO> getAllContrat(){return ias.getAllArticles();}
+
+
+    @GetMapping("/getbyid/{id}")
+    public ArticleDTO GetById(@PathVariable("id") Long id) {
+        return ias.getArticleById(id);
+    }
+
+    @PostMapping("/updateArticle")
+    public Article updateArticle(Article a){
+        return ias.updateArticle(a);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteArticleById(@PathVariable("id") Long id) {
+        ias.deleteArticleById(id);
+    }
+
+
 }
+
